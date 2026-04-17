@@ -8,9 +8,9 @@ Os requisitos funcionais estão descritos em [requisitos.md](requisitos.md).
 
 | Área | Tecnologias |
 |------|----------------|
-| Runtime / framework | Node.js, **NestJS** 10, Express (`@nestjs/platform-express`), **TypeScript** 5 |
+| Runtime / framework | Node.js, **NestJS** 11, Express (`@nestjs/platform-express`), **TypeScript** 5 |
 | Contrato / documentação | **Swagger / OpenAPI** (`@nestjs/swagger`), UI em `/docs` |
-| Persistência | **TypeORM**, **SQLite** (`sqlite3`), ficheiro `data/tasks.sqlite` |
+| Persistência | **TypeORM**, **SQLite** (`better-sqlite3`), ficheiro `data/tasks.sqlite` |
 | Validação HTTP | `class-validator`, `class-transformer` |
 | Testes | **Jest**, `ts-jest`, `@nestjs/testing` |
 | Qualidade de código | **ESLint** 10 (flat config, `eslint.config.mjs`), **typescript-eslint**, **Prettier**, `eslint-config-prettier` |
