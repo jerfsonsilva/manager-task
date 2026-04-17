@@ -9,5 +9,6 @@ export type ChangeTaskStatusCommand = {
 export type ChangeTaskStatusResult = {
   id: string;
   status: TaskStatusEnum;
+  completedAt: Date | null;
   updatedAt: Date;
 };

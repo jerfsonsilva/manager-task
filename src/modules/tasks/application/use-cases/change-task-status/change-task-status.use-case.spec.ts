@@ -97,10 +97,37 @@ describe('ChangeTaskStatusUseCase', () => {
     const { value } = expectRight(result);
 
     expect(value.status).toBe(TaskStatusEnum.IN_PROGRESS);
+    expect(value.completedAt).toBeNull();
     expect(value.updatedAt.toISOString()).toBe(
       TaskClocks.later.now().toISOString(),
     );
 
+    expect(repo.save).toHaveBeenCalledTimes(1);
+  });
+
+  it('should transition to COMPLETED then return completedAt matching clock', async () => {
+    const task = pendingTaskFixture({ status: TaskStatusEnum.IN_PROGRESS });
+
+    const repo: TaskRepositoryPort = {
+      save: jest.fn().mockResolvedValue(undefined),
+      findByIdAndOrganization: jest.fn().mockResolvedValue(task),
+    };
+
+    const useCase = await compileWithRepo(repo);
+
+    const result = await useCase.execute({
+      taskId: TaskIds.taskId,
+      organizationId: TaskIds.organizationId,
+      status: TaskStatusEnum.COMPLETED,
+    });
+
+    const { value } = expectRight(result);
+
+    expect(value.status).toBe(TaskStatusEnum.COMPLETED);
+    expect(value.completedAt).not.toBeNull();
+    expect(value.completedAt?.toISOString()).toBe(
+      TaskClocks.later.now().toISOString(),
+    );
     expect(repo.save).toHaveBeenCalledTimes(1);
   });
 });

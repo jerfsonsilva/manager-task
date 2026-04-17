@@ -26,6 +26,7 @@ import { CreateTaskUseCase } from '@tasks/application/use-cases/create-task/crea
 
 import { OrganizationContextGuard } from '@tasks/presentation/guards/organization-context.guard';
 import { OrganizationId } from '@tasks/presentation/decorators/organization-id.decorator';
+import { ChangeTaskStatusResponseDto } from '@tasks/presentation/dto/change-task-status-response.dto';
 import { CreateTaskDto } from '@tasks/presentation/dto/create-task.dto';
 import { PatchTaskStatusDto } from '@tasks/presentation/dto/patch-task-status.dto';
 import { mapTaskUseCaseErrorToHttp } from '@tasks/presentation/mappers/task-http.mapper';
@@ -75,7 +76,11 @@ export class TasksController {
   @ApiOperation({ summary: 'Alterar status da tarefa' })
   @ApiParam({ name: 'id', format: 'uuid' })
   @ApiBody({ type: PatchTaskStatusDto })
-  @ApiResponse({ status: 200, description: 'Status atualizado' })
+  @ApiResponse({
+    status: 200,
+    description: 'Status atualizado',
+    type: ChangeTaskStatusResponseDto,
+  })
   @ApiResponse({ status: 400, description: 'Transição inválida' })
   @ApiResponse({ status: 404, description: 'Tarefa não encontrada' })
   async patchStatus(

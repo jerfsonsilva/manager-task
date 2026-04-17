@@ -71,6 +71,7 @@ export class ChangeTaskStatusUseCase {
     return right({
       id: t.id,
       status: t.status,
+      completedAt: t.completedAt,
       updatedAt: t.updatedAt,
     });
   }
