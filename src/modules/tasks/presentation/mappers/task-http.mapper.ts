@@ -7,7 +7,6 @@ import type { TaskUseCaseError } from '@tasks/domain/errors/task-errors';
 
 export function mapTaskUseCaseErrorToHttp(err: TaskUseCaseError): never {
   switch (err.kind) {
-
     case 'TASK_NOT_FOUND':
       throw new NotFoundException({
         statusCode: HttpStatus.NOT_FOUND,

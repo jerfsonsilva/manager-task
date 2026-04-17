@@ -29,7 +29,6 @@ export class ChangeTaskStatusUseCase {
   async execute(
     command: ChangeTaskStatusCommand,
   ): Promise<Either<TaskUseCaseError, ChangeTaskStatusResult>> {
-
     this.logger.debug(
       `ChangeTaskStatus started taskId=${maskUuid(command.taskId)} org=${maskUuid(command.organizationId)} targetStatus=${command.status}`,
     );

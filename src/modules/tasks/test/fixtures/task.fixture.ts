@@ -29,7 +29,6 @@ export function clockAt(iso: string): FixedClock {
 export function createTaskCommand(
   overrides?: Partial<CreateTaskCommand>,
 ): CreateTaskCommand {
-
   return {
     title: '  Minha tarefa  ',
     description: '  Detalhes opcionais  ',

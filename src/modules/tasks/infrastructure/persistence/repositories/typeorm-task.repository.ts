@@ -32,7 +32,6 @@ export class TypeOrmTaskRepository implements TaskRepositoryPort {
   }
 
   private toDomain(row: TaskOrmEntity): Task {
-
     return Task.rehydrate({
       id: row.id,
       title: row.title,

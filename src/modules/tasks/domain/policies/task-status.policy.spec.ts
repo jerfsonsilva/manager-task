@@ -11,23 +11,14 @@ describe('TaskStatusPolicy', () => {
       ),
     ).toBe(true);
     expect(
-      TaskStatusPolicy.allows(
-        TaskStatusEnum.PENDING,
-        TaskStatusEnum.CANCELLED,
-      ),
+      TaskStatusPolicy.allows(TaskStatusEnum.PENDING, TaskStatusEnum.CANCELLED),
     ).toBe(true);
 
     expect(
-      TaskStatusPolicy.allows(
-        TaskStatusEnum.PENDING,
-        TaskStatusEnum.COMPLETED,
-      ),
+      TaskStatusPolicy.allows(TaskStatusEnum.PENDING, TaskStatusEnum.COMPLETED),
     ).toBe(false);
     expect(
-      TaskStatusPolicy.allows(
-        TaskStatusEnum.PENDING,
-        TaskStatusEnum.PENDING,
-      ),
+      TaskStatusPolicy.allows(TaskStatusEnum.PENDING, TaskStatusEnum.PENDING),
     ).toBe(false);
   });
 
@@ -60,10 +51,7 @@ describe('TaskStatusPolicy', () => {
   });
 
   it('should receive COMPLETED or CANCELLED as origin then deny every target', () => {
-    for (const from of [
-      TaskStatusEnum.COMPLETED,
-      TaskStatusEnum.CANCELLED,
-    ]) {
+    for (const from of [TaskStatusEnum.COMPLETED, TaskStatusEnum.CANCELLED]) {
       for (const to of Object.values(TaskStatusEnum)) {
         expect(TaskStatusPolicy.allows(from, to)).toBe(false);
       }

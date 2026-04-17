@@ -30,7 +30,6 @@ export class CreateTaskUseCase {
   async execute(
     command: CreateTaskCommand,
   ): Promise<Either<TaskUseCaseError, CreateTaskResult>> {
-
     this.logger.debug(
       `CreateTask started org=${maskUuid(command.organizationId)} assignee=${maskUuid(command.assigneeId)} priority=${command.priority ?? 'default'} titleLength=${command.title.length} hasDescription=${Boolean(command.description?.trim())}`,
     );
